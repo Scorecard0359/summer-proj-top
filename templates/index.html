@@ -9,19 +9,23 @@
 </head>
 <body>
     <div class="content">
+        <div class="title">Диагностическая информация</div>
         <div class="list">
             <ul>
                 <li>Всего задач: {{ total_tasks }}</li>
                 <li>Невыполненных задач: {{ pending_tasks }}</li>
                 <li>Выполненных задач: {{ completed_tasks }}</li>
-                <li>
-                    Категории:
-                    {% for category in categories %}
-                        <span class="category">{{ category }}</span>
-                    {% endfor %}
-                </li>
+                {% if categories %}
+                    <li>
+                        Категории:
+                        {% for category in categories %}
+                            <span class="category">{{ category }}</span>
+                        {% endfor %}
+                    </li>
+                {% endif %}
             </ul>
         </div>
+        <div class="title">Задачи</div>
         <div class="list">
             <ul>
                 {% for task in tasks %}
