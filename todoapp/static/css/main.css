@@ -1,0 +1,43 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 14pt;
+}
+
+.content {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.list {
+    border: 1px solid #949494;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 5px;
+}
+
+.checked {
+    text-decoration: line-through;
+    opacity: 50%;
+}
+
+.title {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+ul {
+    padding-inline-start: 10px;
+    list-style-position: inside;
+    margin: unset;
+}
+
+.category {
+    color: white;
+    background: rgb(100, 100, 255);
+    font-size: 9pt;
+    padding: 3px 10px;
+    border-radius: 10px;
+}
