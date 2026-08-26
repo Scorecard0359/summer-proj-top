@@ -4,17 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задачи</title>
+    <title>Задачи{% if category %} в категории "{{ category }}"{% endif %}</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
     <div class="content">
         <div class="title">
-            {% if category %}
-                Задачи в категории "{{ category }}"
-            {% else %}
-                Задачи
-            {% endif %}
+            Задачи{% if category %} в категории "{{ category }}"{% endif %}
         </div>
         <div class="list">
             <ul>
