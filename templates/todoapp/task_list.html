@@ -10,12 +10,11 @@
 <body>
     <div class="content">
         <div class="title">
-            {% if tasks.object.category_task %}
-                Задачи в категории "{{ tasks.category_task }}"
+            {% if request.GET.category %}
+                Фильтрация задач
             {% else %}
                 Задачи
             {% endif %}
-            {{ categories }}
         </div>
         <div class="list">
             <ul>
