@@ -10,8 +10,8 @@
 <body>
     <div class="content">
         <div class="title">
-            {% if request.GET.category %}
-                Фильтрация задач
+            {% if category %}
+                Задачи в категории "{{ category }}"
             {% else %}
                 Задачи
             {% endif %}
