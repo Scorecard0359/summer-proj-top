@@ -19,7 +19,7 @@
                     <li>
                         Категории:
                         {% for category in categories %}
-                            <span class="category">{{ category }}</span>
+                            <a href="/task/?category={{ category.id }}"><span class="category">{{ category }}</span></a>
                         {% endfor %}
                     </li>
                 {% endif %}
@@ -30,9 +30,9 @@
             <ul>
                 {% for task in tasks %}
                     <li{% if task.is_completed %} class="checked"{% endif %}>
-                        <input type="checkbox" name="task{{ forloop.counter }}" id="task{{ forloop.counter }}"{% if task.is_completed %} checked{% endif %}>
+                        <input type="checkbox" name="task{{ forloop.counter }}" id="task{{ forloop.counter }}"{% if task.is_completed %} checked{% endif %} disabled>
                         <label for="task{{ forloop.counter }}">{{ task }}</label>
-                        <span class="category">{{ task.category_task }}</span>
+                        <a href="/task/?category={{ task.category_task.id }}"><span class="category">{{ task.category_task }}</span></a>
                     </li>
                 {% empty %}
                     Ничего нет.

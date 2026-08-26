@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задачи</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="content">
+        <div class="title">
+            {% if tasks.object.category_task %}
+                Задачи в категории "{{ tasks.category_task }}"
+            {% else %}
+                Задачи
+            {% endif %}
+            {{ categories }}
+        </div>
+        <div class="list">
+            <ul>
+                {% for task in tasks %}
+                    <li{% if task.is_completed %} class="checked"{% endif %}>
+                        <input type="checkbox" name="task{{ forloop.counter }}" id="task{{ forloop.counter }}"{% if task.is_completed %} checked{% endif %} disabled>
+                        <label for="task{{ forloop.counter }}">{{ task }}</label>
+                        <span class="category">{{ task.category_task }}</span>
+                    </li>
+                {% empty %}
+                    Ничего нет.
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

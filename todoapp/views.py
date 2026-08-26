@@ -25,7 +25,7 @@ class IndexView(View):
             "categories": categories
         }
 
-        return render(request, "index.html", context=context)
+        return render(request, "todoapp/index.html", context=context)
 
 class TaskListView(ListView):
     """
@@ -33,10 +33,10 @@ class TaskListView(ListView):
     2. Позволяет передавать в шаблон
     """
 
-    MODEL = Task
-    TEMP_NAME = "task_list.html"
-    CONTEXT_OBJECT_NAME = "tasks" # ? В шаблоне мы будем обращаться {{ tasks }}
-    ORDERING = ['is_completed', '-created_date']
+    model = Task
+    temp_name = "task_list.html"
+    context_object_name = "tasks" # ? В шаблоне мы будем обращаться {{ tasks }}
+    ordering = ['is_completed', '-created_date']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -45,17 +45,16 @@ class TaskListView(ListView):
         context['total_tasks'] = tasks.count()
         context['completed_tasks'] = tasks.filter(is_completed=True).count()
         context['pending_tasks'] = context['total_tasks'] - context['completed_tasks']
-        categories = Category.objects.all()
 
         return context
 
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        category_id = self.request.GET.get('category')
+        category_task_id = self.request.GET.get('category')
 
-        if category_id:
-            queryset = queryset.filter(category_id=category_id)
+        if category_task_id:
+            queryset = queryset.filter(category_task_id=category_task_id)
 
         return queryset
 
@@ -65,10 +64,10 @@ class TaskDetailView(DetailView):
     2. Автоматически передаёт всё в шаблон
     """
 
-    MODEL = Task
-    TEMP_NAME = "task_detail.html"
-    CONTEXT_OBJECT_NAME = "task" # ? В шаблоне мы будем обращаться {{ task }}
-    URL = reverse_lazy('todo:task_list')
+    model = Task
+    temp_name = "task_detail.html"
+    context_object_name = "task" # ? В шаблоне мы будем обращаться {{ task }}
+    url = reverse_lazy('todo:task_list')
 
     def form_valid(self, form):
         title = form.cleaned_data['title']
@@ -85,17 +84,3 @@ class TaskDetailView(DetailView):
         context['category_task'] = Category.objects.all()
 
         return context
-
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-
-    #     task_id = self.request.GET.get('task')
-
-    #     if task_id:
-    #         queryset = queryset.filter(task_id=task_id)
-    #         if not queryset.values("title"):
-    #             return messages.warning(request, "Title is empty.")
-    #         elif not queryset.values("category_task"):
-    #             return messages.warning(request, "Category not set.")
-
-    #     return queryset

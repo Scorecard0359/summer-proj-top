@@ -4,5 +4,6 @@ from todoapp import views as todo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', todo.IndexView.get)
+    path('', todo.IndexView.get),
+    path('task/', todo.TaskListView.as_view())
 ]
