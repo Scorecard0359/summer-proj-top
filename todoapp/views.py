@@ -65,22 +65,21 @@ class TaskDetailView(DetailView):
     """
 
     model = Task
-    temp_name = "task_detail.html"
-    context_object_name = "task" # ? В шаблоне мы будем обращаться {{ task }}
-    url = reverse_lazy('todo:task_list')
+    # temp_name = "task_detail.html"
+    # context_object_name = "task" # ? В шаблоне мы будем обращаться {{ task }}
+    # url = reverse_lazy('todo:task_list')
 
-    def form_valid(self, form):
-        title = form.cleaned_data['title']
+    # def form_valid(self, form):
+    #     title = form.cleaned_data['title']
 
-        if Task.objects.filter(title=title).exists():
-            message.warning(self.request, "Задача существует")
+    #     if Task.objects.filter(title=title).exists():
+    #         message.warning(self.request, "Задача существует")
 
-        return super().form_valid(form)
+    #     return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
 
-        context['title'] = "Создать новую задачу"
-        context['category_task'] = Category.objects.all()
+    #     context['category_task'] = Category.objects.all()
 
-        return context
+    #     return context

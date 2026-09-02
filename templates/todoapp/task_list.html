@@ -17,13 +17,16 @@
                 {% for task in tasks %}
                     <li{% if task.is_completed %} class="checked"{% endif %}>
                         <input type="checkbox" name="task{{ forloop.counter }}" id="task{{ forloop.counter }}"{% if task.is_completed %} checked{% endif %} disabled>
-                        <label for="task{{ forloop.counter }}">{{ task }}</label>
+                        <label for="task{{ forloop.counter }}"><a href="{{ forloop.counter }}">{{ task }}</a></label>
                         <span class="category">{{ task.category_task }}</span>
                     </li>
                 {% empty %}
                     Ничего нет.
                 {% endfor %}
             </ul>
+        </div>
+        <div class="title">
+            <a href="/">Назад на главную</a>
         </div>
     </div>
 </body>

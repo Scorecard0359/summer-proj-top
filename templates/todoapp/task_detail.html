@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="content">
+        <div class="title">
+            {{ task }}
+        </div>
+        <div class="list">
+            <ul>
+                {% if task.description %}
+                    <li>Описание: {{ task.description }}</li>
+                {% endif %}
+                <li>Выполнено: {% if task.is_completed %}Да{% else %}Нет{% endif %}</li>
+                <li>Срок выполнения: {{ task.due_date }}</li>
+                <li>Категория: <a href="/task/?category={{ task.category_task.id }}"><span class="category">{{ task.category_task }}</span></a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <a href="/">Назад на главную</a>
+        </div>
+    </div>
+</body>
+</html>
